@@ -1,20 +1,65 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import 'react-native-gesture-handler';
+import * as React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 
-export default function App() {
+const Stack = createStackNavigator();
+import LoginScreen from '/Users/estebanayala/Documents/Aplicaciones moviles/Botanify/botanify/views/LoginScreen';
+import RegistrationScreen from '/Users/estebanayala/Documents/Aplicaciones moviles/Botanify/botanify/views/RegistrationScreen';
+import HomeScreen from '/Users/estebanayala/Documents/Aplicaciones moviles/Botanify/botanify/views/HomeScreen';
+import DetailsSceeen from '/Users/estebanayala/Documents/Aplicaciones moviles/Botanify/botanify/views/DetailsScreen';
+import {StatusBar} from 'react-native';
+import COLORS from '/Users/estebanayala/Documents/Aplicaciones moviles/Botanify/botanify/const/colors';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import Loader from '/Users/estebanayala/Documents/Aplicaciones moviles/Botanify/botanify/views/components/Loader';
+
+const App = () => {
+  const [initialRouteName, setInitialRouteName] = React.useState('');
+
+  React.useEffect(() => {
+    setTimeout(() => {
+      authUser();
+    }, 2000);
+  }, []);
+
+  const authUser = async () => {
+    try {
+      let userData = await AsyncStorage.getItem('userData');
+      if (userData) {
+        userData = JSON.parse(userData);
+        if (userData.loggedIn) {
+          setInitialRouteName('HomeScreen');
+        } else {
+          setInitialRouteName('LoginScreen');
+        }
+      } else {
+        setInitialRouteName('RegistrationScreen');
+      }
+    } catch (error) {
+      setInitialRouteName('RegistrationScreen');
+    }
+  };
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      {!initialRouteName ? (
+        <Loader visible={true} />
+      ) : (
+        <>
+          <Stack.Navigator
+            initialRouteName={initialRouteName}
+            screenOptions={{headerShown: false}}>
+            <Stack.Screen
+              name="RegistrationScreen"
+              component={RegistrationScreen}
+            />
+            <Stack.Screen name="LoginScreen" component={LoginScreen} />
+            <Stack.Screen name="HomeScreen" component={HomeScreen} />            
+            <Stack.Screen name="Details" component={DetailsSceeen} />
+          </Stack.Navigator>
+        </>
+      )}
+    </NavigationContainer>
   );
-}
+};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;
