@@ -140,7 +140,7 @@ const HomeScreen = ({navigation}) => {
       </View>
       <CategoryList />
       <FlatList
-        columnWrapperStyle={{justifyContent: 'space-between'}}
+        columnWrapperStyle={{justifyContent: 'space-around'}}
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{
           marginTop: 10,
@@ -161,7 +161,7 @@ const style = StyleSheet.create({
     flexDirection: 'row',
     marginTop: 30,
     marginBottom: 20,
-    justifyContent: 'space-between',
+    justifyContent: 'space-around',
   },
   categoryText: {fontSize: 16, color: 'grey', fontWeight: 'bold'},
   categoryTextSelected: {
