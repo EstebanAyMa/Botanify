@@ -135,7 +135,9 @@ const HomeScreen = ({navigation}) => {
           <TextInput placeholder="Search" style={style.input} />
         </View>
         <View style={style.sortBtn}>
-          <Icon name="sort" size={30} color={COLORS.white} />
+          <TouchableOpacity onPress={() => navigation.navigate('OpenCamera')}>
+            <Icon name="camera" size={30} color={COLORS.white} />
+          </TouchableOpacity>
         </View>
       </View>
       <CategoryList />

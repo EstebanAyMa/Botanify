@@ -8,6 +8,7 @@ import LoginScreen from '/Users/estebanayala/Documents/Aplicaciones moviles/Bota
 import RegistrationScreen from '/Users/estebanayala/Documents/Aplicaciones moviles/Botanify/botanify/views/RegistrationScreen';
 import HomeScreen from '/Users/estebanayala/Documents/Aplicaciones moviles/Botanify/botanify/views/HomeScreen';
 import DetailsSceeen from '/Users/estebanayala/Documents/Aplicaciones moviles/Botanify/botanify/views/DetailsScreen';
+import OpenCamera from '/Users/estebanayala/Documents/Aplicaciones moviles/Botanify/botanify/views/OpenCamera';
 import {StatusBar} from 'react-native';
 import COLORS from '/Users/estebanayala/Documents/Aplicaciones moviles/Botanify/botanify/const/colors';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -55,6 +56,7 @@ const App = () => {
             <Stack.Screen name="LoginScreen" component={LoginScreen} />
             <Stack.Screen name="HomeScreen" component={HomeScreen} />            
             <Stack.Screen name="Details" component={DetailsSceeen} />
+            <Stack.Screen name="OpenCamera" component={OpenCamera} />
           </Stack.Navigator>
         </>
       )}
