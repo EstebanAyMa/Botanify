@@ -183,6 +183,7 @@ const style = StyleSheet.create({
   },
   header: {
     marginTop: 30,
+    marginHorizontal: 10,
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
@@ -193,6 +194,7 @@ const style = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
+    marginLeft: 10,
   },
   input: {
     fontSize: 18,
@@ -208,6 +210,7 @@ const style = StyleSheet.create({
     backgroundColor: COLORS.green,
     justifyContent: 'center',
     alignItems: 'center',
+    marginRight: 10,
   },
 });
 export default HomeScreen;
